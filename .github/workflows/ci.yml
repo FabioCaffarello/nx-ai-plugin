@@ -15,14 +15,14 @@ jobs:
         npx nx affected -t lint
 
   check:
-    name: Lint
+    name: Check
     uses: ./.github/workflows/nx-main.yml
     with:
       final-commands: |
         npx nx affected -t test
 
   e2e:
-    name: Lint
+    name: E2E
     uses: ./.github/workflows/nx-main.yml
     with:
       final-commands: |
