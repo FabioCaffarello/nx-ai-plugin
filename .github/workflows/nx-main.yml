@@ -211,7 +211,7 @@ jobs:
       - name: Install Python Dependencies (Poetry)
         run: |
           poetry config virtualenvs.in-project true
-          poetry install --no-root --no-interaction --no-ansi
+          poetry install --no-root --with docs --no-interaction --no-ansi
 
       # ---------------------------------------------------
       # 12) CACHE Nx's .nx/cache
