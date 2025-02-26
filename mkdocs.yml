@@ -58,3 +58,5 @@ markdown_extensions:
   - pymdownx.superfences
   - toc:
       permalink: ''
+  - plantuml_markdown:
+      server: http://localhost:8080
