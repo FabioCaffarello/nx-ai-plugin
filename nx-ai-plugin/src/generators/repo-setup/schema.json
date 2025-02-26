@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "RepoSetup",
+  "title": "Repo Setup Generator Schema",
+  "type": "object",
+  "properties": {
+    "configFilePath": {
+      "type": "string",
+      "description": "Path to create the configuration YAML file.",
+      "default": "./.agents/nx-ai-plugin.config.yaml"
+    },
+    "credentialsPath": {
+      "type": "string",
+      "description": "Path to store credentials, use {monorepo-name} as a placeholder.",
+      "default": "~/.config/nx-ai-plugin/{monorepo-name}"
+    },
+    "templatesPath": {
+      "type": "string",
+      "description": "Path to the templates directory.",
+      "default": "./.agents/templates"
+    },
+    "vectorStoreType": {
+      "type": "string",
+      "description": "Type of vector store (e.g., qdrant, pinecone, faiss).",
+      "default": "qdrant"
+    },
+    "vectorStoreHost": {
+      "type": "string",
+      "description": "Host for the vector store.",
+      "default": "localhost"
+    },
+    "vectorStorePort": {
+      "type": "number",
+      "description": "Port for the vector store.",
+      "default": 6333
+    },
+    "agentsMappingPath": {
+      "type": "string",
+      "description": "Path to the agents mapping file.",
+      "default": "./.agents/mapping.yaml"
+    },
+    "backendUrl": {
+      "type": "string",
+      "description": "URL of the AI backend service.",
+      "default": "http://localhost:5000"
+    }
+  },
+  "required": []
+}

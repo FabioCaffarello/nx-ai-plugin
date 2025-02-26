@@ -1,0 +1,19 @@
+{
+  "generators": {
+    "agent-generator": {
+      "factory": "./src/generators/agent-generator/agent-generator",
+      "schema": "./src/generators/agent-generator/schema.json",
+      "description": "agent-generator generator"
+    },
+    "repo-setup": {
+      "factory": "./src/generators/repo-setup/repo-setup",
+      "schema": "./src/generators/repo-setup/schema.json",
+      "description": "repo-setup generator"
+    },
+    "setup-credentials": {
+      "factory": "./src/generators/setup-credentials/setup-credentials",
+      "schema": "./src/generators/setup-credentials/schema.json",
+      "description": "setup-credentials generator"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "SetupCredentials",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "openApiKey": {
+      "type": "string",
+      "description": "Your OpenAI API key."
+    }
+  },
+  "required": []
+}
