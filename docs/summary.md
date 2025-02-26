@@ -1,4 +1,6 @@
-- [Architecture](index.md)
+
+- [Home](index.md)
+- [Getting Start](getting-start.md)
 - [Plugin](reference/nx-ai-plugin/)
 - [Apps](reference/apps/)
 - [Libs](reference/libs/)

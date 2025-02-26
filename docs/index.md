@@ -1,138 +1,184 @@
 # NX AI Plugin Documentation
 
-Welcome to the **NX AI Plugin**—your next-generation solution for automating code quality and enforcing architectural standards across your Nx monorepo. This plugin empowers you to:
+Welcome to the **NX AI Plugin**—a next-generation solution for automating code quality, enforcing architectural standards, and enhancing developer productivity within your Nx monorepo. This plugin enables seamless integration of AI-powered agents into your development workflow, improving efficiency and ensuring adherence to best practices.
 
-- **Create and Manage Multiple AI Agents:**  
-  Define and deploy specialized agents that apply your custom coding rules, best practices, and architectural guidelines across diverse projects.
+## Key Features
 
-- **Leverage a Context-Aware Vector Store:**  
-  Integrate a vector store to enable powerful, dynamic prompt interactions. This allows your agents to access deep contextual insights, tailoring recommendations to the specifics of your codebase.
+### **1. Create and Manage AI Agents**
+Easily define, configure, and deploy specialized AI agents that enforce coding rules, suggest improvements, and help maintain consistency across your codebase.
 
-- **Automate Code Reviews and Quality Checks:**  
-  Seamlessly trigger AI-driven reviews to catch inconsistencies, improve code readability, and ensure adherence to your organization’s standards.
+### **2. Context-Aware Vector Store**
+Integrate a vector store to enable dynamic, memory-efficient interactions. Agents access deep contextual insights, allowing them to provide more accurate recommendations based on project history and structure.
 
-- **Streamline Configuration and Credential Management:**  
-  Use built-in generators and executors to quickly set up plugin configuration, manage sensitive credentials securely, and update agent settings with ease.
+### **3. AI-Powered Code Reviews**
+Automate and streamline the code review process with AI-generated feedback, improving code readability, maintainability, and adherence to coding standards.
 
-By combining the power of multiple AI agents with advanced vector-based context retrieval, the NX AI Plugin transforms your Nx workspace into an intelligent, self-improving development environment. Whether you're looking to enforce code standards, accelerate code reviews, or optimize your development workflow, the NX AI Plugin provides a comprehensive toolkit to help you achieve these goals.
+### **4. Streamlined Configuration & Credential Management**
+Use built-in generators to quickly set up configurations, manage credentials securely, and update agent settings with ease.
+
+By leveraging **multiple AI agents** and **vector-based retrieval**, the NX AI Plugin transforms your monorepo into a **self-improving development ecosystem**, helping teams optimize workflows, enforce standards, and improve overall code quality.
 
 ---
 
-## Table of Contents
+## 📚 Table of Contents
 
 - [Introduction](#introduction)
 - [Overview](#overview)
-- [Installation](#installation)
-- [Configuration](#configuration)
-  - [Plugin Config File](#plugin-config-file)
-  - [Credentials Setup](#credentials-setup)
-- [Generators](#generators)
-  - [Repo Setup Generator](#repo-setup-generator)
-  - [Setup Credentials Generator](#setup-credentials-generator)
-  - [Agent Generator](#agent-generator)
-- [Executors](#executors)
-- [Usage Examples](#usage-examples)
+- [Getting Started](getting-started.md)
+- [Generators](generators.md)
+- [Executors](executors.md)
+- [Usage Examples](usage-examples.md)
 - [Architecture](#architecture)
 - [Contributing](#contributing)
 - [FAQ](#faq)
 
 ---
 
-## Introduction
+## 🚀 Introduction
 
-In today's fast-paced development environments, maintaining high code quality and enforcing consistent architectural standards across large monorepos can be challenging. The NX AI Plugin is designed to address these challenges head-on by integrating advanced, AI-driven capabilities directly into your Nx workspace.
+### Why Use NX AI Plugin?
 
+Managing large-scale monorepos presents challenges in maintaining code quality, enforcing architecture rules, and ensuring a scalable development workflow. **NX AI Plugin** addresses these challenges with AI-driven automation, integrating intelligent agents that enhance software development efficiency.
 
-### Why It Matters
+### **Benefits:**
 
-The NX AI Plugin transforms your Nx monorepo into an intelligent, self-improving ecosystem. By combining the power of multiple AI agents with advanced vector-based context retrieval, your team gains:
-
-- **Enhanced Code Quality:**  
-  Proactively identify and resolve issues before they become costly problems.
-- **Increased Development Velocity:**  
-  Automate repetitive review tasks and free up developers to focus on high-value work.
-- **Consistent Architectural Standards:**  
-  Ensure that every project, regardless of size or language, adheres to your organization’s best practices.
-- **Scalable, Adaptive Workflows:**  
-  Easily extend and customize the plugin as your codebase evolves, ensuring that your development environment remains cutting-edge.
-
-Whether you're looking to enforce rigorous coding standards, accelerate your review cycles, or simply optimize your development workflow, the NX AI Plugin provides a comprehensive toolkit to elevate your codebase to the next level.
+- **Proactive Code Quality Management** – Identify and fix issues before they cause technical debt.
+- **Accelerated Development Workflows** – Automate repetitive review tasks, allowing developers to focus on core features.
+- **Standardized Code Practices** – Enforce best practices and ensure consistency across all projects.
+- **Scalable & Adaptive** – Customize AI agent configurations as your monorepo evolves.
 
 ---
 
-## Overview
+## 🔍 Overview
 
-The **NX AI Plugin** is a transformative tool designed to seamlessly integrate AI-driven code quality and architectural enforcement into your Nx monorepo. It harnesses the power of advanced language models and a context-aware vector store to deliver dynamic, intelligent code reviews and analyses. With a modular architecture built on generators and executors, the plugin empowers you to create and manage multiple specialized AI agents that enforce your custom coding rules and best practices across diverse projects.
+The **NX AI Plugin** introduces a modular AI-powered framework for Nx monorepos. It enables **dynamic AI code reviews, agent-driven best practices enforcement, and seamless configuration management.**
 
-### Key Components
+### **Key Components:**
 
-The NX AI Plugin solution is built on a modular architecture consisting of three core components. Together, these components enable dynamic, context-aware code reviews, agent management, and interactive developer assistance within your Nx monorepo.
+#### 1️⃣ **Python Backend Service**
+- Hosts the AI models and processes code analysis.
+- Communicates with external AI APIs (e.g., OpenAI).
+- Uses a **vector store** (Qdrant, Pinecone) to provide enhanced contextual analysis.
 
-#### 1. Python Backend Service
+#### 2️⃣ **React Frontend (Developer Chat Interface)**
+- Provides an interactive chat for developers to query AI agents.
+- Offers **real-time feedback** on code changes.
+- Integrates with the backend service to retrieve AI-driven insights.
 
-**Purpose:**  
-This service is the engine that powers the AI functionalities. It orchestrates interactions with external APIs, processes code inputs, and leverages a context-aware vector store to drive retrieval-augmented generation (RAG).
-
-**Core Functions:**
-
-- **API Integration:**  
-  Communicates with external AI services (e.g., OpenAI) to process code diffs and generate intelligent insights.
-
-- **Contextual Data Retrieval:**  
-  Interacts with a vector store (such as Qdrant, Pinecone, or FAISS) to fetch deep contextual information, ensuring that agent responses are tailored to the specific nuances of your codebase.
-
-<!-- - **Agent Management:**  
-  Stores and manages agent configurations and rules, allowing you to upsert, update, or remove agents as needed. -->
-
-- **Request Orchestration:**  
-  Serves as the central hub for executing AI-driven tasks triggered by the NX plugin, ensuring that data flows seamlessly between external APIs and your monorepo.
+#### 3️⃣ **NX Plugin (Core Integration Layer)**
+- Contains **Generators** to configure AI agents and plugin settings.
+- Provides **Executors** to run AI-powered tasks within the Nx workspace.
+- Integrates AI-powered automation into the **Nx development workflow.**
 
 ---
 
-#### 2. React Frontend (Developer Chat Interface)
+## 🔄 How It Works
 
-**Purpose:**  
-Provides an intuitive chat-based interface for developers to interact with the AI system in real time. This frontend enables developers to ask questions, receive code review suggestions, and engage in interactive troubleshooting directly from their development environment.
-
-**Core Functions:**
-
-- **Chat Interface:**  
-  A responsive, user-friendly chat UI that allows developers to send queries and receive detailed AI-generated responses.
-
-- **Real-Time Feedback:**  
-  Displays context-aware recommendations and insights, ensuring that suggestions are relevant and actionable.
-
-- **Integration with Backend:**  
-  Communicates with the Python backend service via HTTP, sending user inputs and displaying returned AI insights.
+1️⃣ **Developers configure AI agents** using the **Agent Generator**.
+2️⃣ **Code updates trigger AI-powered analysis** through Nx executors.
+3️⃣ **The AI backend service processes requests** and retrieves relevant context from the vector store.
+4️⃣ **AI-powered feedback is returned** to the developer via CLI or frontend chat.
 
 ---
 
-#### 3. NX Plugin (Orchestrator & Integration Layer)
+## 🏗 Architecture
 
-**Purpose:**  
-Acts as the bridge between your Nx monorepo and the AI backend service. This plugin integrates AI-driven tasks into your development workflow, automating configuration, agent management, and code review processes via Nx generators and executors.
+The NX AI Plugin architecture is designed to integrate seamlessly into Nx monorepos while ensuring modularity, scalability, and efficiency. Below is an overview of the system components and their interactions:
 
-**Core Functions:**
+### **System Context Diagram (C4 - Level 1)**
+```mermaid
+graph TD;
+    Developer -->|Commits Code| NxPlugin;
+    NxPlugin -->|Generates & Executes AI Tasks| BackendService;
+    BackendService -->|Retrieves Context| VectorStore;
+    BackendService -->|Processes AI Requests| OpenAIAPI;
+    Developer -->|Interacts| FrontendChat;
+    FrontendChat -->|Sends Requests| BackendService;
+```
 
-- **Generators:**  
-  Provide interactive commands to set up the plugin configuration, manage credentials, and upsert new agents. These generators help initialize essential files (like the YAML configuration and agents mapping) and ensure consistency across projects.
+### **Container Diagram (C4 - Level 2)**
+```mermaid
+graph TD;
+    subgraph "Nx AI Plugin"
+        NxPlugin["Nx Plugin"]
+        Generators["Generators"]
+        Executors["Executors"]
+    end
 
-- **Executors:**  
-  Enable the execution of AI-driven tasks as part of your CI/CD pipelines. For example, they can trigger code reviews and quality checks on demand.
+    subgraph "Backend Service"
+        BackendService["Python AI Backend"]
+        APIHandlers["API Handlers"]
+        VectorStore["Vector Store (Qdrant)"]
+    end
 
-<!-- - **RAG Orchestration:**  
-  Coordinates retrieval-augmented generation workflows by querying the vector store and relaying the context to the backend service for enhanced agent responses. -->
+    subgraph "Frontend"
+        FrontendChat["React Chat Interface"]
+    end
 
-- **Seamless Integration:**  
-  Ensures that the AI functionalities are fully integrated into your Nx workspace, making it easy to trigger tasks through standard Nx commands.
+    Developer -->|Commits Code| NxPlugin
+    NxPlugin -->|Triggers Execution| BackendService
+    BackendService -->|Stores/Retrieves Data| VectorStore
+    BackendService -->|Processes AI Tasks| OpenAIAPI["OpenAI API"]
+    Developer -->|Interacts via UI| FrontendChat
+    FrontendChat -->|Sends Requests| BackendService
+
+```
+
+### **Sequence Diagram (AI Task Execution Flow)**
+```mermaid
+sequenceDiagram
+    participant Dev as Developer
+    participant Nx as Nx Plugin
+    participant AI as AI Backend Service
+    participant VS as Vector Store
+    participant API as OpenAI API
+    
+    Dev->>Nx: Commit Code Changes
+    Nx->>AI: Trigger AI Analysis
+    AI->>VS: Retrieve Context
+    AI->>API: Process AI Request
+    API-->>AI: Return AI Response
+    AI-->>Nx: Return AI Insights
+    Nx-->>Dev: Display AI Feedback
+```
+
+### **Key Interactions**
+1. The **Nx Plugin** generates and executes AI-related tasks based on repository activity.
+2. The **Python Backend Service** processes AI-driven tasks and interacts with the vector store.
+3. The **Vector Store** stores embeddings and context for retrieval-augmented generation (RAG).
+4. The **React Frontend** provides a chat-based interface for interacting with the AI system.
+
+This architecture enables **context-aware AI-driven development assistance**, leveraging the power of vector-based storage and intelligent automation to optimize development workflows.
 
 ---
 
-### How They Work Together
+## 🤝 Contributing
 
-- **Integration Flow:**  
+Contributions are welcome! Follow these steps:
 
+1. **Fork the repository**.
+2. **Create a new branch** (`feature/new-awesome-feature`).
+3. **Commit changes** with clear descriptions.
+4. **Submit a pull request**.
 
+For more details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
 
+---
 
+## ❓ FAQ
 
+**Q: What AI models are supported?**  
+A: Currently, OpenAI models are supported, but additional providers will be added in future updates.
+
+**Q: How does the vector store improve AI recommendations?**  
+A: The vector store (e.g., Qdrant) allows AI agents to retrieve deep contextual information, enhancing code analysis and recommendations.
+
+**Q: Can I add custom AI agents?**  
+A: Yes! The **Agent Generator** allows you to define and configure custom AI agents for different use cases.
+
+---
+
+## 📚 Additional Resources
+- [Nx Documentation](https://nx.dev/)
+- [Qdrant Documentation](https://qdrant.tech/)
+- [GitHub Repository](https://github.com/FabioCaffarello/nx-ai-plugin)

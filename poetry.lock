@@ -611,6 +611,23 @@ files = [
 ]
 
 [[package]]
+name = "plantuml-markdown"
+version = "3.11.1"
+description = "A PlantUML plugin for Markdown"
+optional = false
+python-versions = "*"
+groups = ["doc"]
+files = [
+    {file = "plantuml_markdown-3.11.1-py3-none-any.whl", hash = "sha256:52c8507be5b4e5b57e3c4c1cfbe8894b6204f4b6bac2279896efb03d3b79bacf"},
+    {file = "plantuml_markdown-3.11.1.tar.gz", hash = "sha256:0ac39c5d13d3ea8b84ec88f57369a85d058ff15c0c225591dd649b327586142c"},
+]
+
+[package.dependencies]
+Markdown = "*"
+requests = "*"
+six = "*"
+
+[[package]]
 name = "platformdirs"
 version = "4.3.6"
 description = "A small Python package for determining appropriate platform-specific dirs, e.g. a `user data dir`."
@@ -995,4 +1012,4 @@ bracex = ">=2.1.1"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12"
-content-hash = "a7c02dc6844f2f826cdc434995791f97c4eb1fc61a52fc4166f8a45188e56fa9"
+content-hash = "477335f46ffe0f5a94ef79a84e7bfd568504c053483a143143164bc5a8c8ad2b"

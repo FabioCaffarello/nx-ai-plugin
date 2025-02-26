@@ -11,5 +11,6 @@ jobs:
     uses: ./.github/workflows/nx-main.yml
     with:
       final-commands: |
+        docker run -d -p 8080:8080 plantuml/plantuml-server:jetty
         npx nx graph --file=docs/dependency-graph/index.html
         poetry run mkdocs gh-deploy
