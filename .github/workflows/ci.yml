@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  lint:
+    name: Lint
+    uses: ./.github/workflows/nx-main.yml
+    with:
+      final-commands: |
+        npx nx affected -t lint
+
+  check:
+    name: Lint
+    uses: ./.github/workflows/nx-main.yml
+    with:
+      final-commands: |
+        npx nx affected -t test
+
+  e2e:
+    name: Lint
+    uses: ./.github/workflows/nx-main.yml
+    with:
+      final-commands: |
+        npx nx affected -t e2e
