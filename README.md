@@ -1,95 +1,109 @@
-# NxAiPlugin
+# NX AI Plugin
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
+Welcome to **NX AI Plugin** – your next-generation solution for automating code quality, enforcing architectural standards, and enhancing developer productivity in your Nx monorepo. With advanced AI-driven capabilities, our plugin empowers you to create, manage, and customize multiple specialized agents that seamlessly integrate into your development workflow.
 
-Run `npx nx graph` to visually explore what got created. Now, let's get you up to speed!
+[![Build Status](https://img.shields.io/github/actions/workflow/status/FabioCaffarello/nx-ai-plugin/ci.yml?branch=main)](https://github.com/FabioCaffarello/nx-ai-plugin/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-## Run tasks
+---
 
-To run tasks with Nx use:
+## Overview
 
-```sh
-npx nx <target> <project-name>
+The **NX AI Plugin** transforms your Nx monorepo into an intelligent, self-improving ecosystem by combining the power of multiple AI agents with context-aware vector-based prompt interactions. Its core components include:
+
+---
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Getting Started](#getting-started)
+- [Configuration](#configuration)
+  - [Plugin Config File](#plugin-config-file)
+  - [Credentials Setup](#credentials-setup)
+- [Generators](#generators)
+  - [Repo Setup Generator](#repo-setup-generator)
+  - [Setup Credentials Generator](#setup-credentials-generator)
+  - [Agent Generator](#agent-generator)
+- [Executors](#executors)
+- [Usage Examples](#usage-examples)
+- [CI Integration](#ci-integration)
+- [Contributing](#contributing)
+- [FAQ](#faq)
+- [Additional Resources](#additional-resources)
+
+---
+
+## Configuration
+Before you begin, ensure you have the following installed:
+
+- **Node.js** (v20 or later)
+- **Nx CLI** (if not installed globally, use `npx nx`)
+- **Docker**
+
+### Plugin Config File
+
+The **Repo Setup Generator** creates a centralized YAML configuration file (e.g., `./.agents/nx-ai-plugin.config.yaml`) that defines key settings:
+
+```yaml
+credentialsPath: "~/.config/nx-ai-plugin/{monorepo-name}"
+templatesPath: "./.agents/templates"
+
+vectorStore:
+  type: "qdrant"
+  host: "localhost"
+  port: 6333
+
+agentsMappingPath: "./.agents/mapping.yaml"
+backendUrl: "http://localhost:5000"
 ```
 
-For example:
+To generate or update this file, run:
 
-```sh
-npx nx build myproject
+```bash
+npx nx generate nx-ai-plugin:repo-setup
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+### Credentials Setup
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+The **Setup Credentials Generator** securely stores your OpenAI API key (and other credentials) in your home directory. For example, run:
 
-## Add new projects
-
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-To install a new plugin you can use the `nx add` command. Here's an example of adding the React plugin:
-```sh
-npx nx add @nx/react
+```bash
+npx nx generate nx-ai-plugin:setup-credentials --openApiKey="YOUR_OPENAI_API_KEY"
 ```
 
-Use the plugin's generator to create new projects. For example, to create a new React app or library:
+This will create or update a file at `~/.config/nx-ai-plugin/credentials.yaml`.
 
-```sh
-# Generate an app
-npx nx g @nx/react:app demo
+---
 
-# Generate a library
-npx nx g @nx/react:lib some-lib
+## Generators
+
+### Repo Setup Generator
+
+Initializes the plugin configuration and creates the agents mapping file with default values.
+
+**Usage:**
+
+```bash
+npx nx generate nx-ai-plugin:repo-setup
 ```
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+### Setup Credentials Generator
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Upserts your API keys into a YAML file in your home directory for secure credential management.
 
-## Set up CI!
+**Usage:**
 
-### Step 1
-
-To connect to Nx Cloud, run the following command:
-
-```sh
-npx nx connect
+```bash
+npx nx generate nx-ai-plugin:setup-credentials --openApiKey="YOUR_OPENAI_API_KEY"
 ```
 
-Connecting to Nx Cloud ensures a [fast and scalable CI](https://nx.dev/ci/intro/why-nx-cloud?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) pipeline. It includes features such as:
+### Agent Generator
 
-- [Remote caching](https://nx.dev/ci/features/remote-cache?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task distribution across multiple machines](https://nx.dev/ci/features/distribute-task-execution?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Automated e2e test splitting](https://nx.dev/ci/features/split-e2e-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task flakiness detection and rerunning](https://nx.dev/ci/features/flaky-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Upserts a new agent into the agents mapping file. It reads the `agentsMappingPath` from the plugin config and updates it with the provided agent details.
 
-### Step 2
+**Usage:**
 
-Use the following command to configure a CI workflow for your workspace:
-
-```sh
-npx nx g ci-workflow
+```bash
+npx nx generate nx-ai-plugin:agent-generator --agentName="goAgent" --agentType="go" --promptTemplate="You are a Go expert. Please review the diff and suggest improvements." --configFilePath="./.agents/nx-ai-plugin.config.yaml"
 ```
-
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Install Nx Console
-
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
