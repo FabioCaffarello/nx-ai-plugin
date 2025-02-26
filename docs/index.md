@@ -86,60 +86,73 @@ The **NX AI Plugin** introduces a modular AI-powered framework for Nx monorepos.
 The NX AI Plugin architecture is designed to integrate seamlessly into Nx monorepos while ensuring modularity, scalability, and efficiency. Below is an overview of the system components and their interactions:
 
 ### **System Context Diagram (C4 - Level 1)**
-```mermaid
-graph TD;
-    Developer -->|Commits Code| NxPlugin;
-    NxPlugin -->|Generates & Executes AI Tasks| BackendService;
-    BackendService -->|Retrieves Context| VectorStore;
-    BackendService -->|Processes AI Requests| OpenAIAPI;
-    Developer -->|Interacts| FrontendChat;
-    FrontendChat -->|Sends Requests| BackendService;
+```plantuml
+@startuml
+actor Developer
+participant "Nx Plugin" as NxPlugin
+participant "Python AI Backend" as BackendService
+database "Vector Store (Qdrant)" as VectorStore
+participant "OpenAI API" as OpenAIAPI
+participant "Frontend Chat" as FrontendChat
+
+Developer -> NxPlugin: Commits Code
+NxPlugin -> BackendService: Generates & Executes AI Tasks
+BackendService -> VectorStore: Retrieves Context
+BackendService -> OpenAIAPI: Processes AI Requests
+Developer -> FrontendChat: Interacts
+FrontendChat -> BackendService: Sends Requests
+@enduml
 ```
 
 ### **Container Diagram (C4 - Level 2)**
-```mermaid
-graph TD;
-    subgraph "Nx AI Plugin"
-        NxPlugin["Nx Plugin"]
-        Generators["Generators"]
-        Executors["Executors"]
-    end
+```plantuml
+@startuml
+actor Developer
 
-    subgraph "Backend Service"
-        BackendService["Python AI Backend"]
-        APIHandlers["API Handlers"]
-        VectorStore["Vector Store (Qdrant)"]
-    end
+package "Nx AI Plugin" {
+    [Nx Plugin] as NxPlugin
+    [Generators] as Generators
+    [Executors] as Executors
+}
 
-    subgraph "Frontend"
-        FrontendChat["React Chat Interface"]
-    end
+package "Backend Service" {
+    [Python AI Backend] as BackendService
+    [API Handlers] as APIHandlers
+    database "Vector Store (Qdrant)" as VectorStore
+}
 
-    Developer -->|Commits Code| NxPlugin
-    NxPlugin -->|Triggers Execution| BackendService
-    BackendService -->|Stores/Retrieves Data| VectorStore
-    BackendService -->|Processes AI Tasks| OpenAIAPI["OpenAI API"]
-    Developer -->|Interacts via UI| FrontendChat
-    FrontendChat -->|Sends Requests| BackendService
+package "Frontend" {
+    [React Chat Interface] as FrontendChat
+}
 
+Developer --> NxPlugin : Commits Code
+NxPlugin --> BackendService : Triggers Execution
+BackendService --> VectorStore : Stores/Retrieves Data
+BackendService --> OpenAIAPI : Processes AI Tasks
+Developer --> FrontendChat : Interacts via UI
+FrontendChat --> BackendService : Sends Requests
+
+@enduml
 ```
 
 ### **Sequence Diagram (AI Task Execution Flow)**
-```mermaid
-sequenceDiagram
-    participant Dev as Developer
-    participant Nx as Nx Plugin
-    participant AI as AI Backend Service
-    participant VS as Vector Store
-    participant API as OpenAI API
-    
-    Dev->>Nx: Commit Code Changes
-    Nx->>AI: Trigger AI Analysis
-    AI->>VS: Retrieve Context
-    AI->>API: Process AI Request
-    API-->>AI: Return AI Response
-    AI-->>Nx: Return AI Insights
-    Nx-->>Dev: Display AI Feedback
+
+```plantuml
+@startuml
+actor Dev as "Developer"
+participant Nx as "Nx Plugin"
+participant AI as "AI Backend Service"
+participant VS as "Vector Store"
+participant API as "OpenAI API"
+
+Dev -> Nx: Commit Code Changes
+Nx -> AI: Trigger AI Analysis
+AI -> VS: Retrieve Context
+AI -> API: Process AI Request
+API --> AI: Return AI Response
+AI --> Nx: Return AI Insights
+Nx --> Dev: Display AI Feedback
+@enduml
 ```
 
 ### **Key Interactions**
