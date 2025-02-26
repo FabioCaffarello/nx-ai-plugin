@@ -7,7 +7,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.5" name="generator"/>
-<title>NxAiPlugin - NX AI Plugin</title>
+<title>NX AI Plugin - NX AI Plugin</title>
 <link href="../assets/stylesheets/main.8608ea7d.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
@@ -21,7 +21,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#nxaiplugin">
+<a class="md-skip" href="#nx-ai-plugin">
           Skip to content
         </a>
 </div>
@@ -45,7 +45,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              NxAiPlugin
+              NX AI Plugin
             
           </span>
 </div>
@@ -127,6 +127,16 @@
       </a>
 </li>
 <li class="md-tabs__item">
+<a class="md-tabs__link" href="libs">
+        
+  
+    
+  
+  Libs
+
+      </a>
+</li>
+<li class="md-tabs__item">
 <a class="md-tabs__link" href="../dependency-graph/index.html?select=all#/projects/all?groupByFolder=true">
         
   
@@ -200,6 +210,14 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="libs">
+<span class="md-ellipsis">
+    Libs
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="../dependency-graph/index.html?select=all#/projects/all?groupByFolder=true">
 <span class="md-ellipsis">
     Dependency Graph
@@ -222,38 +240,38 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#run-tasks">
+<a class="md-nav__link" href="#overview">
 <span class="md-ellipsis">
-      Run tasks
+      Overview
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#add-new-projects">
+<a class="md-nav__link" href="#table-of-contents">
 <span class="md-ellipsis">
-      Add new projects
+      Table of Contents
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#set-up-ci">
+<a class="md-nav__link" href="#configuration">
 <span class="md-ellipsis">
-      Set up CI!
+      Configuration
     </span>
 </a>
-<nav aria-label="Set up CI!" class="md-nav">
+<nav aria-label="Configuration" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#step-1">
+<a class="md-nav__link" href="#plugin-config-file">
 <span class="md-ellipsis">
-      Step 1
+      Plugin Config File
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#step-2">
+<a class="md-nav__link" href="#credentials-setup">
 <span class="md-ellipsis">
-      Step 2
+      Credentials Setup
     </span>
 </a>
 </li>
@@ -261,18 +279,36 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#install-nx-console">
+<a class="md-nav__link" href="#generators">
 <span class="md-ellipsis">
-      Install Nx Console
+      Generators
+    </span>
+</a>
+<nav aria-label="Generators" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#repo-setup-generator">
+<span class="md-ellipsis">
+      Repo Setup Generator
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#useful-links">
+<a class="md-nav__link" href="#setup-credentials-generator">
 <span class="md-ellipsis">
-      Useful links
+      Setup Credentials Generator
     </span>
 </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#agent-generator">
+<span class="md-ellipsis">
+      Agent Generator
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -281,65 +317,78 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="nxaiplugin">NxAiPlugin<a class="headerlink" href="#nxaiplugin" title="Permanent link"></a></h1>
-<p><a alt="Nx logo" href="https://nx.dev" rel="noreferrer" target="_blank"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"/></a></p>
-<p>✨ Your new, shiny <a href="https://nx.dev">Nx workspace</a> is ready ✨.</p>
-<p>Run <code>npx nx graph</code> to visually explore what got created. Now, let's get you up to speed!</p>
-<h2 id="run-tasks">Run tasks<a class="headerlink" href="#run-tasks" title="Permanent link"></a></h2>
-<p>To run tasks with Nx use:</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>npx<span class="w"> </span>nx<span class="w"> </span>&lt;target&gt;<span class="w"> </span>&lt;project-name&gt;
-</code></pre></div>
-<p>For example:</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>npx<span class="w"> </span>nx<span class="w"> </span>build<span class="w"> </span>myproject
-</code></pre></div>
-<p>These targets are either <a href="https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects">inferred automatically</a> or defined in the <code>project.json</code> or <code>package.json</code> files.</p>
-<p><a href="https://nx.dev/features/run-tasks?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects">More about running tasks in the docs »</a></p>
-<h2 id="add-new-projects">Add new projects<a class="headerlink" href="#add-new-projects" title="Permanent link"></a></h2>
-<p>While you could add new projects to your workspace manually, you might want to leverage <a href="https://nx.dev/concepts/nx-plugins?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects">Nx plugins</a> and their <a href="https://nx.dev/features/generate-code?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects">code generation</a> feature.</p>
-<p>To install a new plugin you can use the <code>nx add</code> command. Here's an example of adding the React plugin:
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>npx<span class="w"> </span>nx<span class="w"> </span>add<span class="w"> </span>@nx/react
-</code></pre></div></p>
-<p>Use the plugin's generator to create new projects. For example, to create a new React app or library:</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1"># Generate an app</span>
-<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a>npx<span class="w"> </span>nx<span class="w"> </span>g<span class="w"> </span>@nx/react:app<span class="w"> </span>demo
-<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a>
-<a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="c1"># Generate a library</span>
-<a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a>npx<span class="w"> </span>nx<span class="w"> </span>g<span class="w"> </span>@nx/react:lib<span class="w"> </span>some-lib
-</code></pre></div>
-<p>You can use <code>npx nx list</code> to get a list of installed plugins. Then, run <code>npx nx list &lt;plugin-name&gt;</code> to learn about more specific capabilities of a particular plugin. Alternatively, <a href="https://nx.dev/getting-started/editor-setup?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects">install Nx Console</a> to browse plugins and generators in your IDE.</p>
-<p><a href="https://nx.dev/concepts/nx-plugins?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects">Learn more about Nx plugins »</a> | <a href="https://nx.dev/plugin-registry?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects">Browse the plugin registry »</a></p>
-<h2 id="set-up-ci">Set up CI!<a class="headerlink" href="#set-up-ci" title="Permanent link"></a></h2>
-<h3 id="step-1">Step 1<a class="headerlink" href="#step-1" title="Permanent link"></a></h3>
-<p>To connect to Nx Cloud, run the following command:</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>npx<span class="w"> </span>nx<span class="w"> </span>connect
-</code></pre></div>
-<p>Connecting to Nx Cloud ensures a <a href="https://nx.dev/ci/intro/why-nx-cloud?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects">fast and scalable CI</a> pipeline. It includes features such as:</p>
+<h1 id="nx-ai-plugin">NX AI Plugin<a class="headerlink" href="#nx-ai-plugin" title="Permanent link"></a></h1>
+<p>Welcome to <strong>NX AI Plugin</strong> – your next-generation solution for automating code quality, enforcing architectural standards, and enhancing developer productivity in your Nx monorepo. With advanced AI-driven capabilities, our plugin empowers you to create, manage, and customize multiple specialized agents that seamlessly integrate into your development workflow.</p>
+<p><a href="https://github.com/FabioCaffarello/nx-ai-plugin/actions"><img alt="Build Status" src="https://img.shields.io/github/actions/workflow/status/FabioCaffarello/nx-ai-plugin/ci.yml?branch=main"/></a>
+<a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-blue.svg"/></a></p>
+<hr/>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link"></a></h2>
+<p>The <strong>NX AI Plugin</strong> transforms your Nx monorepo into an intelligent, self-improving ecosystem by combining the power of multiple AI agents with context-aware vector-based prompt interactions. Its core components include:</p>
+<hr/>
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link"></a></h2>
 <ul>
-<li><a href="https://nx.dev/ci/features/remote-cache?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects">Remote caching</a></li>
-<li><a href="https://nx.dev/ci/features/distribute-task-execution?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects">Task distribution across multiple machines</a></li>
-<li><a href="https://nx.dev/ci/features/split-e2e-tasks?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects">Automated e2e test splitting</a></li>
-<li><a href="https://nx.dev/ci/features/flaky-tasks?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects">Task flakiness detection and rerunning</a></li>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#configuration">Configuration</a></li>
+<li><a href="#plugin-config-file">Plugin Config File</a></li>
+<li><a href="#credentials-setup">Credentials Setup</a></li>
+<li><a href="#generators">Generators</a></li>
+<li><a href="#repo-setup-generator">Repo Setup Generator</a></li>
+<li><a href="#setup-credentials-generator">Setup Credentials Generator</a></li>
+<li><a href="#agent-generator">Agent Generator</a></li>
+<li><a href="#executors">Executors</a></li>
+<li><a href="#usage-examples">Usage Examples</a></li>
+<li><a href="#ci-integration">CI Integration</a></li>
+<li><a href="#contributing">Contributing</a></li>
+<li><a href="#faq">FAQ</a></li>
+<li><a href="#additional-resources">Additional Resources</a></li>
 </ul>
-<h3 id="step-2">Step 2<a class="headerlink" href="#step-2" title="Permanent link"></a></h3>
-<p>Use the following command to configure a CI workflow for your workspace:</p>
-<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a>npx<span class="w"> </span>nx<span class="w"> </span>g<span class="w"> </span>ci-workflow
-</code></pre></div>
-<p><a href="https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects">Learn more about Nx on CI</a></p>
-<h2 id="install-nx-console">Install Nx Console<a class="headerlink" href="#install-nx-console" title="Permanent link"></a></h2>
-<p>Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.</p>
-<p><a href="https://nx.dev/getting-started/editor-setup?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects">Install Nx Console »</a></p>
-<h2 id="useful-links">Useful links<a class="headerlink" href="#useful-links" title="Permanent link"></a></h2>
-<p>Learn more:</p>
+<hr/>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link"></a></h2>
+<p>Before you begin, ensure you have the following installed:</p>
 <ul>
-<li><a href="https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects">Learn about Nx on CI</a></li>
-<li><a href="https://nx.dev/features/manage-releases?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects">Releasing Packages with Nx release</a></li>
-<li><a href="https://nx.dev/concepts/nx-plugins?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects">What are Nx plugins?</a></li>
+<li><strong>Node.js</strong> (v20 or later)</li>
+<li><strong>Nx CLI</strong> (if not installed globally, use <code>npx nx</code>)</li>
+<li><strong>Docker</strong></li>
 </ul>
-<p>And join the Nx community:
-- <a href="https://go.nx.dev/community">Discord</a>
-- <a href="https://twitter.com/nxdevtools">Follow us on X</a> or <a href="https://www.linkedin.com/company/nrwl">LinkedIn</a>
-- <a href="https://www.youtube.com/@nxdevtools">Our Youtube channel</a>
-- <a href="https://nx.dev/blog?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects">Our blog</a></p>
+<h3 id="plugin-config-file">Plugin Config File<a class="headerlink" href="#plugin-config-file" title="Permanent link"></a></h3>
+<p>The <strong>Repo Setup Generator</strong> creates a centralized YAML configuration file (e.g., <code>./.agents/nx-ai-plugin.config.yaml</code>) that defines key settings:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nt">credentialsPath</span><span class="p">:</span><span class="w"> </span><span class="s">"~/.config/nx-ai-plugin/{monorepo-name}"</span>
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="nt">templatesPath</span><span class="p">:</span><span class="w"> </span><span class="s">"./.agents/templates"</span>
+<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a>
+<a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="nt">vectorStore</span><span class="p">:</span>
+<a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="s">"qdrant"</span>
+<a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">  </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="s">"localhost"</span>
+<a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6333</span>
+<a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a>
+<a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="nt">agentsMappingPath</span><span class="p">:</span><span class="w"> </span><span class="s">"./.agents/mapping.yaml"</span>
+<a href="#__codelineno-0-10" id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="nt">backendUrl</span><span class="p">:</span><span class="w"> </span><span class="s">"http://localhost:5000"</span>
+</code></pre></div>
+<p>To generate or update this file, run:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>npx<span class="w"> </span>nx<span class="w"> </span>generate<span class="w"> </span>nx-ai-plugin:repo-setup
+</code></pre></div>
+<h3 id="credentials-setup">Credentials Setup<a class="headerlink" href="#credentials-setup" title="Permanent link"></a></h3>
+<p>The <strong>Setup Credentials Generator</strong> securely stores your OpenAI API key (and other credentials) in your home directory. For example, run:</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>npx<span class="w"> </span>nx<span class="w"> </span>generate<span class="w"> </span>nx-ai-plugin:setup-credentials<span class="w"> </span>--openApiKey<span class="o">=</span><span class="s2">"YOUR_OPENAI_API_KEY"</span>
+</code></pre></div>
+<p>This will create or update a file at <code>~/.config/nx-ai-plugin/credentials.yaml</code>.</p>
+<hr/>
+<h2 id="generators">Generators<a class="headerlink" href="#generators" title="Permanent link"></a></h2>
+<h3 id="repo-setup-generator">Repo Setup Generator<a class="headerlink" href="#repo-setup-generator" title="Permanent link"></a></h3>
+<p>Initializes the plugin configuration and creates the agents mapping file with default values.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>npx<span class="w"> </span>nx<span class="w"> </span>generate<span class="w"> </span>nx-ai-plugin:repo-setup
+</code></pre></div>
+<h3 id="setup-credentials-generator">Setup Credentials Generator<a class="headerlink" href="#setup-credentials-generator" title="Permanent link"></a></h3>
+<p>Upserts your API keys into a YAML file in your home directory for secure credential management.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>npx<span class="w"> </span>nx<span class="w"> </span>generate<span class="w"> </span>nx-ai-plugin:setup-credentials<span class="w"> </span>--openApiKey<span class="o">=</span><span class="s2">"YOUR_OPENAI_API_KEY"</span>
+</code></pre></div>
+<h3 id="agent-generator">Agent Generator<a class="headerlink" href="#agent-generator" title="Permanent link"></a></h3>
+<p>Upserts a new agent into the agents mapping file. It reads the <code>agentsMappingPath</code> from the plugin config and updates it with the provided agent details.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a>npx<span class="w"> </span>nx<span class="w"> </span>generate<span class="w"> </span>nx-ai-plugin:agent-generator<span class="w"> </span>--agentName<span class="o">=</span><span class="s2">"goAgent"</span><span class="w"> </span>--agentType<span class="o">=</span><span class="s2">"go"</span><span class="w"> </span>--promptTemplate<span class="o">=</span><span class="s2">"You are a Go expert. Please review the diff and suggest improvements."</span><span class="w"> </span>--configFilePath<span class="o">=</span><span class="s2">"./.agents/nx-ai-plugin.config.yaml"</span>
+</code></pre></div>
 </article>
 </div>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
