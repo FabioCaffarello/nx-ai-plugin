@@ -1,0 +1,4 @@
+main-branch-name: main
+node-version: 20
+python-version: '3.12'
+poetry-version: 2.1.1
