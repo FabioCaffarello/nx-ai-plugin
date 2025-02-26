@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "AgentGenerator",
+  "title": "Agent Generator Schema",
+  "type": "object",
+  "properties": {
+    "agentName": {
+      "type": "string",
+      "description": "Unique name for the agent."
+    },
+    "configFilePath": {
+      "type": "string",
+      "description": "Path to create the configuration YAML file.",
+      "default": "./.agents/nx-ai-plugin.config.yaml"
+    },
+    "agentType": {
+      "type": "string",
+      "description": "Type of the agent (e.g., 'go', 'python', etc.)."
+    },
+    "promptTemplate": {
+      "type": "string",
+      "description": "The default prompt template for the agent."
+    }
+  },
+  "required": ["agentName", "agentType", "promptTemplate"]
+}

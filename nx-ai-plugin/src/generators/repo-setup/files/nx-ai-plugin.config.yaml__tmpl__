@@ -1,0 +1,10 @@
+credentialsPath: "<%= credentialsPath %>"
+templatesPath: "<%= templatesPath %>"
+
+vectorStore:
+  type: "<%= vectorStoreType %>"
+  host: "<%= vectorStoreHost %>"
+  port: <%= vectorStorePort %>
+
+agentsMappingPath: "<%= agentsMappingPath %>"
+backendUrl: "<%= backendUrl %>"
