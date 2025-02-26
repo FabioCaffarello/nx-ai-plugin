@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nx-ai-plugin": ["nx-ai-plugin/src/index.ts"]
+      "@nx-ai-plugin": ["nx-ai-plugin/src/index.ts"],
+      "@nx-ai-plugin-core/os": ["libs/node/core/os/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
