@@ -7,7 +7,8 @@
   "dependencies": {
     "@nx/devkit": "20.4.6",
     "tslib": "^2.3.0",
-    "js-yaml": "^4.1.0"
+    "js-yaml": "^4.1.0",
+    "@nx-ai-plugin-core/os": "0.0.1"
   },
   "generators": "./generators.json"
 }

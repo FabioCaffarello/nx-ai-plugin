@@ -1,8 +1,8 @@
 import { Tree, formatFiles } from '@nx/devkit';
 import * as yaml from 'js-yaml';
 import { AgentGeneratorGeneratorSchema } from './schema';
+import { fileExists, getExistingYaml } from '@nx-ai-plugin-core/os';
 
-// Define the interfaces.
 interface PluginConfig {
   agentsMappingPath: string;
 }
@@ -20,23 +20,16 @@ export async function agentGeneratorGenerator(
   tree: Tree,
   options: AgentGeneratorGeneratorSchema & { configFilePath: string }
 ) {
-  // Ensure the plugin config file exists.
-  if (!tree.exists(options.configFilePath)) {
+  if (!fileExists(options.configFilePath, tree)) {
     throw new Error(
       `Plugin config file not found at ${options.configFilePath}. Please run the config generator first.`
     );
   }
 
-  // Read and parse the plugin configuration.
-  const pluginConfigContent = tree.read(options.configFilePath, 'utf-8');
-  if (!pluginConfigContent) {
-    throw new Error(
-      `Failed to read plugin config file at ${options.configFilePath}.`
-    );
-  }
-  const pluginConfig = yaml.load(pluginConfigContent) as PluginConfig;
+  const pluginConfig = getExistingYaml(options.configFilePath, {
+    agentsMappingPath: './.agents/mapping.yaml',
+  }) as PluginConfig;
 
-  // Retrieve the agentsMappingPath from the plugin config.
   const mappingFilePath: string = pluginConfig.agentsMappingPath;
   if (!mappingFilePath) {
     throw new Error(
@@ -44,7 +37,6 @@ export async function agentGeneratorGenerator(
     );
   }
 
-  // Load the existing mapping file if it exists; otherwise, initialize it.
   let mappingObj: AgentMapping = { agents: {} };
   if (tree.exists(mappingFilePath)) {
     const mappingContent = tree.read(mappingFilePath, 'utf-8');
@@ -52,19 +44,15 @@ export async function agentGeneratorGenerator(
     mappingObj = (parsedMapping as AgentMapping) || { agents: {} };
   }
 
-  // Ensure the "agents" property exists.
   mappingObj.agents = mappingObj.agents || {};
 
-  // Upsert the agent: use options.agentName as the key.
   mappingObj.agents[options.agentName] = {
     type: options.agentType,
     promptTemplate: options.promptTemplate,
   };
 
-  // Dump the updated mapping object to a YAML string.
   const newYamlContent = yaml.dump(mappingObj);
 
-  // Write the updated content back to the mapping file.
   tree.write(mappingFilePath, newYamlContent);
 
   await formatFiles(tree);
