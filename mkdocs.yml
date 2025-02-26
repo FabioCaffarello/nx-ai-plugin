@@ -44,6 +44,7 @@ plugins:
 
 watch:
   - apps
+  - libs
   - nx-ai-plugin
 
 extra_css:
